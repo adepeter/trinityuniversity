@@ -16,3 +16,6 @@ django-celery-beat
 django-precise-bbcode
 django-resized
 martor
+coverage
+django-coverage-plugin
+pytest-cov

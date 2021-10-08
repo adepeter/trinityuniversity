@@ -1,0 +1,10 @@
+[run]
+source = .
+omit = */node_modules/* manage.py
+plugins = django_coverage_plugin
+[report]
+fail_under = 100
+show_missing = True
+skip_covered = True
+[django_coverage_plugin]
+template_extensions = html, txt, tex, email
