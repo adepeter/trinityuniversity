@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ block.super }} | Staffs{% endblock %}
+
+{% block content %}
+    <div class="sub_header bg_3">
+        <div id="intro_txt">
+            <h1>Atena <strong>Agenda</strong> calendar</h1>
+            <p>Ex saepe accusata duo, vel ne summo option delenit.</p>
+        </div>
+    </div> <!--End sub_header -->
+
+    <div id="position">
+        <div class="container">
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Category</a></li>
+                <li>Page active</li>
+            </ul>
+        </div>
+    </div><!-- Position -->
+    {% include 'users/_inclusions/users_list.html' with users=staffs %}
+{% endblock %}

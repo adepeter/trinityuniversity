@@ -1,0 +1,136 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load martortags %}
+{% load article_tags %}
+
+{% block title %}{{ block.super }} | Blogs{% endblock %}
+
+{% block content %}
+
+    <div class="sub_header bg_1">
+        <div id="intro_txt">
+            <h1>Trinity University <strong>Blog</strong> page</h1>
+            <p>News section of the university</p>
+        </div>
+    </div> <!--End sub_header -->
+
+    <div id="position">
+        <div class="container">
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Category</a></li>
+                <li>Page active</li>
+            </ul>
+        </div>
+    </div><!-- Position -->
+
+    <div class="container_gray_bg">
+        <div class="container margin_60">
+            <div class="row">
+
+                <div class="col-md-9">
+                    {% for article in page_obj %}
+                        <div class="post">
+                            <a href="{{ article.get_absolute_url }}">
+                                <img alt="{{ article.title }}" class="img-responsive"
+                                     src="{{ article.get_preview_cover }}">
+                            </a>
+                            <div class="post_info clearfix">
+                                <div class="post-left">
+                                    <ul>
+                                        <li><i class="icon-calendar-empty"></i>{{ article.date_posted }}
+                                            <em>by {{ article.author.username }}</em></li>
+                                        <li><i class="icon-inbox-alt"></i><a href="?category={{ article.category.slug }}">Category</a></li>
+                                        <li><i class="icon-tags"></i><a href="#">Works</a>, <a href="#">Personal</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="post-right"><i class="icon-comment"></i>{{ article.posts.count }}</div>
+                            </div>
+                            <h2>{{ article.title }}</h2>
+                            <p>
+                                {{ article.content | safe_markdown | truncatewords_html:200 }}
+                            </p>
+                            <a class="button" href="{{ article.get_absolute_url }}">Read more</a>
+                        </div><!-- end post -->
+                    {% empty %}
+                        <div class="post">
+                            <p>No articles yet</p>
+                        </div>
+                    {% endfor %}
+                </div>
+
+                {% if is_paginated %}
+                    <div class="text-center">
+                        <ul class="pagination">
+                            <li><a href="#">Prev</a></li>
+                            <li class="active"><a href="#">1</a></li>
+                            <li><a href="#">2</a></li>
+                            <li><a href="#">3</a></li>
+                            <li><a href="#">4</a></li>
+                            <li><a href="#">5</a></li>
+                            <li><a href="#">Next</a></li>
+                        </ul><!-- end pagination-->
+                    </div>
+                    </div><!-- End col-md-8-->
+                {% endif %}
+
+            <aside class="col-md-3" id="sidebar">
+
+                <div class="widget">
+                    <div id="custom-search-input">
+                        <div class="input-group col-md-12">
+                            <input class="form-control input-lg" placeholder="Search" type="text"/>
+                            <span class="input-group-btn">
+                        <button class="btn btn-info btn-lg" type="button">
+                            <i class="icon-search-1"></i>
+                        </button>
+                    </span>
+                        </div>
+                    </div>
+                </div><!-- End Search -->
+                <hr>
+                <div class="widget">
+                    <h4>Categories</h4>
+                    <ul id="cat_nav">
+                        {% for category in categories %}
+                            <li><a href="?category={{ category.slug }}">{{ category.name }}</a></li>
+                        {% empty %}
+                            <p>There are no categories yet</p>
+                        {% endfor %}
+                    </ul>
+                </div><!-- End widget -->
+
+                <hr>
+
+                <div class="widget">
+                    <h4>Recent post</h4>
+                    <ul class="recent_post">
+                        {% latest_articles as recent_topics %}
+                        {% for topic in recent %}
+                            <li>
+                                <i class="icon-calendar-empty"></i> {{ topic.date_posted }}
+                                <div><a href="#">{{ topic.title }}</a>
+                                </div>
+                            </li>
+                        {% empty %}
+                            <p>There are no topics yet</p>
+                        {% endfor %}
+                    </ul>
+                </div><!-- End widget -->
+                <hr>
+                <div class="widget tags">
+                    <h4>Tags</h4>
+                    {% for tag in tags %}
+                        <a href="#">{{ tag.name }}</a>
+                    {% empty %}
+                        <p>Empty tag list</p>
+                    {% endfor %}
+                </div><!-- End widget -->
+
+            </aside><!-- End aside -->
+
+        </div><!-- End row-->
+    </div><!-- End container -->
+    </div><!--End container_gray_bg -->
+{% endblock %}

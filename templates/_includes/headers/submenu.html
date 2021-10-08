@@ -1,0 +1,124 @@
+{% load flatpages %}
+{% load faculty_tags %}
+{% load programme_tags %}
+
+<ul>
+    <li><a href="{% url 'tu:home:index' %}">Home</a></li>
+    <li class="megamenu submenu">
+        <a href="javascript:void(0);" class="show-submenu-mega">Administration<i
+                class="icon-down-open-mini"></i></a>
+        <div class="menu-wrapper">
+            <div class="col-sm-6">
+                <h3>Administration</h3>
+                <ul>
+                    <li><a href="icon-pack-1.html">The Visitors <i class="icon-inbox-alt"></i></a></li>
+                    <li><a href="icon-pack-1.html">The Chancellor <i class="icon-inbox-alt"></i></a></li>
+                    <li><a href="icon-pack-1.html">The Pro-Chancellor <i class="icon-inbox-alt"></i></a></li>
+                    <li><a href="icon-pack-1.html">The Vice-Chancellor <i class="icon-inbox-alt"></i></a></li>
+                    <li><a href="icon-pack-1.html">The Council <i class="icon-inbox-alt"></i></a></li>
+                    <li><a href="icon-pack-1.html">University Management <i class="icon-inbox-alt"></i></a></li>
+                </ul>
+            </div>
+            <div class="col-sm-6">
+                <h3>Admin Structures</h3>
+                <ul>
+                    <li><a href="academic_single_course.html">VC's complex</a></li>
+                    <li><a href="academic_single_course.html">Registry</a></li>
+                    <li><a href="academic_single_course.html">Bursary</a></li>
+                    <li><a href="academic_single_course.html">Library</a></li>
+                    <li><a href="academic_single_course.html">Estate and Municipal</a></li>
+                    <li><a href="academic_single_course.html">PP&D</a></li>
+                    <li><a href="academic_single_course.html">Health</a></li>
+                </ul>
+            </div>
+        </div><!-- End menu-wrapper -->
+    </li>
+    <li class="submenu">
+        <a href="javascript:void(0);" class="show-submenu">Admission <i
+                class="icon-down-open-mini"></i></a>
+        <ul>
+            <li><a href="apply_online.html">Remedials</a></li>
+            <li><a href="apply_online.html">Undergraduate</a></li>
+            <li><a href="apply_online.html">Postgraduate</a></li>
+        </ul>
+    </li>
+    <li class="megamenu submenu">
+        <a href="javascript:void(0);" class="show-submenu-mega">Academics<i
+                class="icon-down-open-mini"></i></a>
+        <div class="menu-wrapper">
+            <div class="col-md-4">
+                <h3>Faculties</h3>
+                {% all_faculties_without_children as faculties_without_children %}
+                <ul>
+                    {% for faculty_without_children in faculties_without_children %}
+                        <li>
+                        <a href="{% url 'tu:faculties:faculty_preview' faculty_without_children.slug %}">{{ faculty_without_children.name }}
+                            <i
+                                    class="icon-inbox-alt"></i></a>
+                    {% empty %}
+                        <p>There are no faculties yet</p>
+                    {% endfor %}
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-4">
+                <h3>Colleges</h3>
+                {% all_faculties_that_are_children as faculties_that_are_children %}
+                <ul>
+                    {% for faculty_that_are_children in faculties_that_are_children %}
+                        <li>
+                            <a href="{% url 'tu:faculties:faculty_preview' faculty_that_are_children.slug %}">{{ faculty_that_are_children.name }}</a>
+                        </li>
+                    {% empty %}
+                        <p>There are no faculties in colleges yet</p>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="col-md-4">
+                <h3>Programmes</h3>
+                <ul>
+                    {% all_programmes as programmes %}
+                    {% for programme in programmes %}
+                        <li><a href="apply_online.html">{{ programme.name }}</a></li>
+                    {% empty %}
+                        <p>Institution is currently not running any programme yet</p>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div><!-- End menu-wrapper -->
+    </li>
+    <li><a href="{% url 'tu:pages:tour' %}">Tour</a></li>
+    <li class="submenu">
+        <a href="javascript:void(0);" class="show-submenu">About<i class="icon-down-open-mini"></i></a>
+        {% get_flatpages as flatpages %}
+        <ul>
+            <li><a href="{% url 'tu:pages:why_us' %}">Why Us</a></li>
+            {% for page in flatpages %}
+                <li><a href="{{ page.url }}">{{ page.title }}</a></li>
+            {% endfor %}
+            <li><a href="gallery.html">Awards</a></li>
+            <li><a href="{% url 'tu:galleries:galleries' %}">Gallery</a></li>
+        </ul>
+    </li>
+    <li class="submenu">
+        <a href="javascript:void(0);" class="show-submenu">Contact Us<i class="icon-down-open-mini"></i></a>
+        <ul>
+            <li><a href="contacts.html">Plan a visit</a></li>
+        </ul>
+    </li>
+    <li class="submenu">
+        <a href="javascript:void(0);" class="show-submenu">Portal<i class="icon-down-open-mini"></i></a>
+        <ul>
+            <li><a href="{% url 'tu:blogs:articles_listing' %}">Blogs</a></li>
+            <li><a href="{% url 'tu:jobs:job_listings' %}">Jobs</a></li>
+        </ul>
+    </li>
+    <li class="submenu">
+        <a href="javascript:void(0);" class="show-submenu">Account<i class="icon-down-open-mini"></i></a>
+        <ul>
+            <li><a href="about.html">Login</a></li>
+            <li><a href="contacts.html">Register</a></li>
+        </ul>
+    </li>
+    <li><a href="#search" id="search_bt"><i class=" icon-search"></i><span>Search</span></a></li>
+</ul>

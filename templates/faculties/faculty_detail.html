@@ -1,0 +1,116 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% load martortags %}
+
+{% block title %}Faculty of {{ faculty.name }} | {{ block.super }}{% endblock %}
+
+{% block content %}
+    <div class="sub_header bg_1">
+        <div id="intro_txt">
+            <h1>Faculty of <strong>{{ faculty.name }}</strong></h1>
+            <p>{{ faculty.get_short_description }}</p>
+        </div>
+    </div> <!--End sub_header -->
+
+    <div class="container_gray_bg">
+        <div class="container margin_60">
+            <div class="row">
+
+                <div class="col-md-9">
+                    <div class="box_style_1">
+                        <div class="indent_title_in">
+                            <i class="pe-7s-news-paper"></i>
+                            <h3>Preview</h3>
+                            <p>A brief view of the faculty</p>
+                        </div>
+                        <div class="wrapper_indent">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <p>
+                                        <img src="{% static 'img/course_1_1_thumb.jpg' %}"
+                                             alt="Faculty of {{ faculty.name }}" class="img-responsive">
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <hr class="styled_2">
+                        <div class="indent_title_in">
+                            <i class="pe-7s-news-paper"></i>
+                            <h3>Summary</h3>
+                            <p>What we are</p>
+                        </div>
+                        <div class="wrapper_indent">
+                            <p>{{ faculty.long_description | safe_markdown }}</p>
+                        </div>
+
+                        <hr class="styled_2">
+
+                        <div class="indent_title_in">
+                            <i class="pe-7s-user"></i>
+                            <h3>Faculty Staffs</h3>
+                            <p>Both academic and non-academic staffs of the faculty.</p>
+                        </div>
+                        <div class="wrapper_indent">
+                            <p>This is a comprehensive list of staffs in the faculty of {{ faculty.name }} that have
+                                made it a success</p>
+                            <div class="row">
+                                {% for staff in faculty.staffs.all %}
+                                    <div class="col-md-6 col-sm-6">
+                                        <ul class="list_teachers">
+                                            <li>
+                                                <a href="{{ staff.get_absolute_url }}">
+                                                    <figure>
+                                                        <img src="{{ staff.dp }}" height="68px" width="68px"
+                                                             alt="{{ staff.display_name }}" class="img-rounded">
+                                                    </figure>
+                                                    <h5>{{ staff.username }}</h5>
+                                                    <p>{{ staff.position }}</p><i class="pe-7s-angle-right-circle"></i></a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                {% empty %}
+                                    <p>There are no staffs yet</p>
+                                {% endfor %}
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <aside class="col-md-3">
+                    <div class="banner">
+                        <img src="{{ faculty.dean.user.dp }}" height="128px" width="128px"
+                             alt="Dean of {{ faculty.name }}"/>
+                        <h3>Dean</h3>
+                        <p>Kindly take a slight preview into the Faculty of {{ faculty.name }}.</p>
+                        <a href="tour.html" class="banner_bt">Start tour</a>
+                    </div>
+                    <hr>
+                    <div class="widget">
+                        <h4>Departments</h4>
+                        <ul id="cat_nav">
+                            {% for department in faculty.departments.all %}
+                                <li><a href="{{ department.get_absolute_url }}">{{ department.name }}</a></li>
+                            {% empty %}
+                                <p>Faculty of {{ faculty.name }} does not have any department yet</p>
+                            {% endfor %}
+                        </ul>
+                    </div><!-- End widget -->
+                    <hr class="styled">
+                    <div class="box_side"><h5>By Email</h5> <i class="icon-phone"></i>
+                        <p>
+                            <a href="mailto://{{ faculty.email }}">{{ faculty.email }}</a>
+                        </p>
+                    </div>
+                    <hr class="styled">
+                    <div class="box_side"><h5>By Phone</h5> <i class="icon-phone"></i>
+                        <p>
+                            <a href="tel://{{ faculty.phone }}">+ {{ faculty.phone }}</a>
+                            <br><small>Monday to Friday 9.00am - 6.00pm</small>
+                        </p>
+                    </div>
+                </aside>
+            </div><!--End row -->
+        </div><!--End container -->
+    </div><!--End container_gray_bg -->
+{% endblock %}

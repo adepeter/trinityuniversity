@@ -1,0 +1,9 @@
+<div class="col-md-8 col-md-offset-2 text-center">
+    <h3>Subscribe to our Newsletter for latest news.</h3>
+    <div id="message-newsletter"></div>
+    <form method="POST" action="{% url 'tu:newsletters:newsletter_subscribe' %}" class="form-inline">
+        {% csrf_token %}
+        {{ form.subscriber_email }}
+        <button id="submit-newsletter" class="button" type="submit"> Subscribe</button>
+    </form>
+</div>

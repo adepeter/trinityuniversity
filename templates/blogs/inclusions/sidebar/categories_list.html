@@ -1,0 +1,5 @@
+{% for category in categories %}
+    <li><a href="">{{ category.name }}</a></li>
+{% empty %}
+    <p>There are no category yet</p>
+{% endfor %}

@@ -1,0 +1,152 @@
+{% extends 'base.html' %}
+
+{% block title %}Gallery | {{ block.super }}{% endblock %}
+
+{% block content %}
+    <div class="sub_header bg_4">
+        <div id="intro_txt">
+            <h1>{{ settings.title }} <strong>Gallery</strong></h1>
+            <p>{{ settings.description }}</p>
+        </div>
+    </div> <!--End sub_header -->
+
+    <div class="container margin_60">
+        <section class="grid">
+            <div class="main_title">
+                <h2>Here some pictures ...</h2>
+                <p>{{ settings.description }}</p>
+            </div>
+            <div class="row">
+                <ul class="magnific-gallery">
+                    {% for photo in photos %}
+                        <li>
+                        <figure>
+                            <img alt="" src="img/gallery/pic_4.jpg">
+                            <figcaption>
+                                <div class="caption-content">
+                                    <a data-effect="mfp-move-horizontal" href="img/gallery/large/pic_4.jpg"
+                                       title="Photo title">
+                                        <i class="pe-7s-albums"></i>
+                                        <p>Your caption</p>
+                                    </a>
+                                </div>
+                            </figcaption>
+                        </figure>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="row">
+                <ul class="magnific-gallery">
+                    <li>
+                        <figure>
+                            <img alt="" src="img/gallery/pic_8.jpg">
+                            <figcaption>
+                                <div class="caption-content">
+                                    <a href="img/gallery/large/pic_8.jpg" title="Photo title">
+                                        <i class="pe-7s-albums"></i>
+                                        <p>Your caption</p>
+                                    </a>
+                                </div>
+                            </figcaption>
+                        </figure>
+                    </li>
+                    <li>
+                        <figure>
+                            <img alt="" src="img/gallery/pic_9.jpg">
+                            <figcaption>
+                                <div class="caption-content">
+                                    <a href="img/gallery/large/pic_9.jpg" title="Photo title">
+                                        <i class="pe-7s-albums"></i>
+                                        <p>Your caption</p>
+                                    </a>
+                                </div>
+                            </figcaption>
+                        </figure>
+                    </li>
+                    <li>
+                        <figure>
+                            <img alt="" src="img/gallery/pic_10.jpg">
+                            <figcaption>
+                                <div class="caption-content">
+                                    <a href="img/gallery/large/pic_10.jpg" title="Photo title">
+                                        <i class="pe-7s-albums"></i>
+                                        <p>Your caption</p>
+                                    </a>
+                                </div>
+                            </figcaption>
+                        </figure>
+                    </li>
+                    <li>
+                        <figure>
+                            <img alt="" src="img/gallery/pic_11.jpg">
+                            <figcaption>
+                                <div class="caption-content">
+                                    <a href="img/gallery/large/pic_1.jpg" title="Photo title">
+                                        <i class="pe-7s-albums"></i>
+                                        <p>Your caption</p>
+                                    </a>
+                                </div>
+                            </figcaption>
+                        </figure>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="grid">
+            <div class="container margin_60">
+                <div class="main_title">
+                    <h2>Here some videos ...</h2>
+                    <p>Cum doctus civibus efficiantur in imperdiet deterruisset.</p>
+                </div>
+                <div class="row">
+                    <ul class="magnific-gallery">
+                        <li>
+                            <figure>
+                                <img alt="" src="img/gallery/pic_2.jpg">
+                                <figcaption>
+                                    <div class="caption-content">
+                                        <a class="video_pop" href="https://vimeo.com/45830194" title="Video Vimeo">
+                                            <i class="pe-7s-film"></i>
+                                            <p>Your caption</p>
+                                        </a>
+                                    </div>
+                                </figcaption>
+                            </figure>
+                        </li>
+
+                        <li>
+                            <figure>
+                                <img alt="" src="img/gallery/pic_13.jpg">
+                                <figcaption>
+                                    <div class="caption-content">
+                                        <a class="video_pop" href="https://www.youtube.com/watch?v=Zz5cu72Gv5Y"
+                                           title="Video Youtube">
+                                            <i class="pe-7s-film"></i>
+                                            <p>Your caption</p>
+                                        </a>
+                                    </div>
+                                </figcaption>
+                            </figure>
+                        </li>
+                        <li>
+                            <figure>
+                                <img alt="" src="img/gallery/pic_4.jpg">
+                                <figcaption>
+                                    <div class="caption-content">
+                                        <a class="video_pop" href="https://vimeo.com/45830194" title="Video Vimeo">
+                                            <i class="pe-7s-film"></i>
+                                            <p>Your caption</p>
+                                        </a>
+                                    </div>
+                                </figcaption>
+                            </figure>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </div>
+
+{% endblock %}

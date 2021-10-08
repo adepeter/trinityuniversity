@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ flatpage.title }} | {{ block.super }}{% endblock %}
+
+{% block content %}
+    <div class="sub_header bg_2">
+        <div id="intro_txt">
+            <h1>{{ settings.title }} <strong>Excellence</strong> in academics</h1>
+            <p>{{ flatpage.title }}</p>
+        </div>
+    </div> <!--End sub_header -->
+    {% comment %}
+    <div class="container_gray_bg">
+        <div class="container margin_60">
+            <div class="main_title">
+                <h2>{{ flatpage.title }}</h2>
+            </div>
+        </div>
+    </div>
+    <div class="container margin_60">
+        <div class="row">
+            <div class="col-md-12 col-sm-12">
+                <div class="box_style_4">
+                    {{ flatpage.content }}
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endcomment %}
+    <div class="container margin_60">
+        {{ flatpage.content }}
+    </div>
+{% endblock %}

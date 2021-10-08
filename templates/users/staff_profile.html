@@ -1,0 +1,186 @@
+{% extends 'base.html' %}
+{% load martortags %}
+
+{% block title %}{{ user.display_name }} | {{ block.super }}{% endblock %}
+
+{% block content %}
+
+    <div class="sub_header bg_1">
+        <div id="intro_txt">
+            <h1><strong>{{ user.display_name }}</strong> (Biologist)</h1>
+            <p>Ex saepe accusata duo, vel ne summo option delenit.</p>
+        </div>
+    </div> <!--End sub_header -->
+
+    <div id="position">
+        <div class="container">
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Category</a></li>
+                <li>Page active</li>
+            </ul>
+        </div>
+    </div><!-- Position -->
+
+    <div class="container_gray_bg">
+        <div class="container margin_60">
+            <div class="row">
+                <aside class="col-md-3">
+                    <div class="profile">
+                        <p class="text-center">
+                            <img alt="{{ user.display_name }}" height="150px" width="150px"class="img-circle styled_2" src="{{ user.dp }}">
+                        </p>
+                        <ul class="social_teacher">
+                            <li><a href="{{ user.facebook }}"><i class="icon-facebook"></i></a></li>
+                            <li><a href="{{ user.twitter }}"><i class="icon-twitter"></i></a></li>
+                            <li><a href="{{ user.google }}"><i class=" icon-google"></i></a></li>
+                        </ul>
+                        <ul>
+                            <li>Name <strong class="pull-right">{{ user.display_name }}</strong></li>
+                            <li>Email <strong class="pull-right">{{ user.email }}</strong></li>
+                            <li>Telephone <strong class="pull-right">{{ user.phone }}</strong></li>
+                            <li>Students <strong class="pull-right">42</strong></li>
+                            <li>Lessons <strong class="pull-right">12</strong></li>
+                            <li>Courses <strong class="pull-right">15</strong></li>
+                        </ul>
+
+                    </div><!-- End box-sidebar -->
+                </aside>
+                <div class="col-md-9">
+                    <div class="box_style_1">
+                        <div class="indent_title_in">
+                            <i class="pe-7s-user"></i>
+                            <h3>Profile</h3>
+                            <p>Mussum ipsum cacilds, vidis litro abertis.</p>
+                        </div>
+                        <div class="wrapper_indent">
+                            <p>{{ use.about | safe_markdown }}</p>
+                            <p>Mei ut decore accusam consequat, alii dignissim no usu. Phaedrum intellegat sit ut, no
+                                pri
+                                mutat eirmod. In eum iriure perpetua adolescens, pri dicunt prodesset et. Vis dicta
+                                postulant ad.</p>
+                            <h4>Credentials</h4>
+                            <p>Lorem ipsum dolor sit amet, dicta oportere ad est, ea eos partem neglegentur
+                                theophrastus.
+                                Esse voluptatum duo ne, expetenda corrumpit no per, at mei nobis lucilius. No eos semper
+                                aperiri neglegentur, vis noluisse quaestio no. Vix an nostro inimicus, qui ut animal
+                                fabellas reprehendunt. In quando repudiare intellegebat sed, nam suas dicta melius
+                                ea.</p>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <ul class="list_3">
+                                        <li><strong>September 2009 - Bachelor Degree in Economics</strong>
+                                            <p>University of Cambrige - United Kingdom</p></li>
+                                        <li><strong>December 2012 - Master course in Economics</strong>
+                                            <p>University of Cambrige - United Kingdom</p></li>
+                                        <li><strong>October 2013 - Master's Degree in Statistic</strong>
+                                            <p>University of Oxford - United Kingdom</p></li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-6">
+                                    <ul class="list_3">
+                                        <li><strong>September 2009 - Bachelor Degree in Economics</strong>
+                                            <p>University of Cambrige - United Kingdom</p></li>
+                                        <li><strong>December 2012 - Master course in Economics</strong>
+                                            <p>University of Cambrige - United Kingdom</p></li>
+                                    </ul>
+                                </div>
+                            </div><!-- End row-->
+                        </div><!--wrapper_indent -->
+                        <hr class="styled_2">
+                        <div class="indent_title_in">
+                            <i class="pe-7s-display1"></i>
+                            <h3>My courses</h3>
+                            <p>Mussum ipsum cacilds, vidis litro abertis.</p>
+                        </div>
+                        <div class="wrapper_indent">
+                            <p>Mei ut decore accusam consequat, alii dignissim no usu. Phaedrum intellegat sit ut, no
+                                pri
+                                mutat eirmod. In eum iriure perpetua adolescens, pri dicunt prodesset et. Vis dicta
+                                postulant ad.</p>
+                            <div class="table-responsive">
+                                <table class="table table-striped add_bottom_30">
+                                    <thead>
+                                    <tr>
+                                        <th>Category</th>
+                                        <th>Course name</th>
+                                        <th>Lessons</th>
+                                        <th>Rate</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td>Business</td>
+                                        <td><a href="#">Business Plan</a></td>
+                                        <td>12</td>
+                                        <td class="rating_2"><i class="icon-star"></i><i class="icon-star"></i><i
+                                                class="icon-star"></i><i class=" icon-star-empty"></i><i
+                                                class=" icon-star-empty"></i></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Business</td>
+                                        <td><a href="#">Economy pinciples</a></td>
+                                        <td>12</td>
+                                        <td class="rating_2"><i class="icon-star"></i><i class="icon-star"></i><i
+                                                class="icon-star"></i></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Business</td>
+                                        <td><a href="#">Understand diagrams</a></td>
+                                        <td>04</td>
+                                        <td class="rating_2"><i class="icon-star"></i><i class="icon-star"></i><i
+                                                class="icon-star"></i><i class=" icon-star-empty"></i><i
+                                                class=" icon-star-empty"></i></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Business</td>
+                                        <td><a href="#">Marketing strategies</a></td>
+                                        <td>10</td>
+                                        <td class="rating_2"><i class="icon-star"></i><i class="icon-star"></i><i
+                                                class="icon-star"></i><i class=" icon-star-empty"></i><i
+                                                class=" icon-star-empty"></i></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Business</td>
+                                        <td><a href="#">Marketing</a></td>
+                                        <td>20</td>
+                                        <td class="rating_2"><i class="icon-star"></i><i class="icon-star"></i><i
+                                                class="icon-star"></i><i class="icon-star"></i><i
+                                                class=" icon-star-empty"></i></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Business</td>
+                                        <td><a href="#">Business Plan</a></td>
+                                        <td>12</td>
+                                        <td class="rating_2"><i class="icon-star"></i><i class="icon-star"></i><i
+                                                class="icon-star"></i><i class="icon-star"></i><i class="icon-star"></i>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Business</td>
+                                        <td><a href="#">Economy pinciples</a></td>
+                                        <td>12</td>
+                                        <td class="rating_2"><i class="icon-star"></i><i class="icon-star"></i><i
+                                                class="icon-star"></i></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Business</td>
+                                        <td><a href="#">Understand diagrams</a></td>
+                                        <td>04</td>
+                                        <td class="rating_2"><i class="icon-star"></i><i class="icon-star"></i><i
+                                                class="icon-star"></i><i class=" icon-star-empty"></i><i
+                                                class=" icon-star-empty"></i></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div><!--wrapper_indent -->
+                    </div>
+                </div>
+
+            </div><!--End row -->
+        </div><!--End container -->
+    </div><!--End bg_gray_container -->
+
+
+{% endblock %}

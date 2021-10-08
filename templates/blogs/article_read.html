@@ -1,0 +1,178 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% load martortags %}
+{% load article_tags %}
+
+{% block title %}{{ article.title }} | {{ block.super }}{% endblock %}
+
+{% block content %}
+
+
+    <div class="sub_header bg_1">
+        <div id="intro_txt">
+            <h1>Trinity University <strong>Blog</strong> page</h1>
+            <p>{{ article.title }}</p>
+        </div>
+    </div> <!--End sub_header -->
+
+    <div id="position">
+        <div class="container">
+            <ul>
+                <li><a href="{% url 'tu:blogs:articles_listing' %}">Home</a></li>
+                <li><a href="{% url 'tu:blogs:articles_listing' %}?category={{ article.category.slug }}">Category</a>
+                </li>
+                <li>{{ article.title }}</li>
+            </ul>
+        </div>
+    </div><!-- Position -->
+
+    <div class="container_gray_bg">
+        <div class="container margin_60">
+            <div class="row">
+
+                <div class="col-md-9">
+
+                    <div class="post">
+                        <img alt="" class="img-responsive" src="{{ article.cover.url }}">
+                        <div class="post_info clearfix">
+                            <div class="post-left">
+                                <ul>
+                                    <li><i class="icon-calendar-empty"></i>{{ article.date_posted }}
+                                        <em>by {{ article.author.username }}</em></li>
+                                    <li><i class="icon-tags"></i><a href="#">Works</a>, <a href="#">Personal</a></li>
+                                </ul>
+                            </div>
+                            <div class="post-right"><i class="icon-comment"></i>{{ article.posts.count }}</div>
+                        </div>
+                        <h2>{{ article.title }}</h2>
+                        <p>
+                            {{ article.content | safe_markdown }}
+                        </p>
+                    </div><!-- end post -->
+
+                    <h4>{{ article.posts.count }} comments</h4>
+
+                    <div id="comments">
+                        <ol>
+                            {% for post in posts %}
+                                <li>
+                                    <div class="avatar"><a href="#"><img alt=""
+                                                                         src="{% static 'img/avatar1.jpg' %}"/></a>
+                                    </div>
+                                    <div class="comment_right clearfix">
+                                        <div class="comment_info">
+                                            Posted by <a
+                                                href="#">{{ post.poster.username }}</a><span>|</span> {{ post.date_posted }}
+                                            <span>|</span><a
+                                                href="#">Reply</a>
+                                        </div>
+                                        <p>{{ post.content | linebreaksbr }}</p>
+                                    </div>
+                                    {% if post.children.count > 0 %}
+                                        <ul>
+                                            {% for child_post in post.children.all %}
+                                                <li>
+                                                    <div class="avatar">
+                                                        <a href="#"><img alt="" src="{% static 'img/avatar2.jpg' %}"></a>
+                                                    </div>
+                                                    <div class="comment_right clearfix">
+                                                        <div class="comment_info">Posted by <a href="#">{{ child_post.poster.username }}</a>
+                                                            <span>|</span> {{ child_post.date_posted }}
+                                                            <span>|</span><a href="#">Reply</a>
+                                                        </div>
+                                                        <p>{{ child_post.content | linebreaksbr }}</p>
+                                                    </div>
+                                                </li>
+                                            {% endfor %}
+                                        </ul>
+                                    {% endif %}
+                                </li>
+                            {% empty %}
+                                <p>There are no comments yet</p>
+                            {% endfor %}
+                        </ol>
+                    </div><!-- End Comments -->
+
+                    <h4>Leave a comment</h4>
+                    <form action="#" method="post">
+                        <div class="form-group">
+                            <input class="form-control styled" name="name" placeholder="Enter name" type="text">
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control styled" name="mail" placeholder="Enter email" type="text">
+                        </div>
+                        <div class="form-group">
+                        <textarea class="form-control styled" name="message" placeholder="Message"
+                                  style="height:150px;"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <input class="button" type="submit" value="Post Comment">
+                            <input class="button_outline" type="reset" value="Clear form">
+                        </div>
+                    </form>
+
+
+                </div><!-- End col-md-8-->
+
+                <aside class="col-md-3" id="sidebar">
+
+                <div class="widget">
+                    <div id="custom-search-input">
+                        <div class="input-group col-md-12">
+                            <input class="form-control input-lg" placeholder="Search" type="text"/>
+                            <span class="input-group-btn">
+                        <button class="btn btn-info btn-lg" type="button">
+                            <i class="icon-search-1"></i>
+                        </button>
+                    </span>
+                        </div>
+                    </div>
+                </div><!-- End Search -->
+                <hr>
+                <div class="widget">
+                    <h4>Categories</h4>
+                    <ul id="cat_nav">
+                        {% for category in categories %}
+                            <li><a href="?category={{ category.slug }}">{{ category.name }}</a></li>
+                        {% empty %}
+                            <p>There are no categories yet</p>
+                        {% endfor %}
+                    </ul>
+                </div><!-- End widget -->
+
+                <hr>
+
+                <div class="widget">
+                    <h4>Recent post</h4>
+                    <ul class="recent_post">
+                        {% latest_articles as recent_topics %}
+                        {% for topic in recent %}
+                            <li>
+                                <i class="icon-calendar-empty"></i> {{ topic.date_posted }}
+                                <div><a href="#">{{ topic.title }}</a>
+                                </div>
+                            </li>
+                        {% empty %}
+                            <p>There are no topics yet</p>
+                        {% endfor %}
+                    </ul>
+                </div><!-- End widget -->
+                <hr>
+                <div class="widget tags">
+                    <h4>Tags</h4>
+                    {% for tag in tags %}
+                        <a href="#">{{ tag.name }}</a>
+                    {% empty %}
+                        <p>Empty tag list</p>
+                    {% endfor %}
+                </div><!-- End widget -->
+
+            </aside><!-- End aside -->
+
+            </div><!-- End row-->
+        </div><!-- End container -->
+    </div><!--End container_gray_bg -->
+
+
+{% endblock %}
