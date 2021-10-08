@@ -21,13 +21,13 @@
                     {% for photo in photos %}
                         <li>
                         <figure>
-                            <img alt="" src="img/gallery/pic_4.jpg">
+                            <img alt="{{ photo.caption }}" src="{{ photo.image.url }}">
                             <figcaption>
                                 <div class="caption-content">
-                                    <a data-effect="mfp-move-horizontal" href="img/gallery/large/pic_4.jpg"
-                                       title="Photo title">
+                                    <a data-effect="mfp-move-horizontal" href="{{ photo.image.url }}"
+                                       title="{{ photo.image.title }}">
                                         <i class="pe-7s-albums"></i>
-                                        <p>Your caption</p>
+                                        <p>{{ photo.caption }}</p>
                                     </a>
                                 </div>
                             </figcaption>
