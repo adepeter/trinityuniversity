@@ -11,6 +11,7 @@ import os
 
 from django.core.asgi import get_asgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'TrinityUniversityProject.settings')
+tu_environment = os.environ.get('TU_ENVIRONMENT', 'TrinityUniversityProject.settings.development')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', tu_environment)
 
 application = get_asgi_application()

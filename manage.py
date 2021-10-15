@@ -6,7 +6,8 @@ import sys
 
 def main():
     """Run administrative tasks."""
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'TrinityUniversityProject.settings')
+    tu_environment = os.environ.get('TU_ENVIRONMENT', 'TrinityUniversityProject.settings.development')
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', tu_environment)
     # MyProject Customization: run coverage.py around tests automatically
     try:
         command = sys.argv[1]
